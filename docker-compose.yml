@@ -1,0 +1,21 @@
+version: '3.7'
+ 
+services:
+    youtrack:
+        image: jetbrains/youtrack:2020.6.2904
+        container_name: "youtrack"
+        volumes:
+          - ./data:/opt/youtrack/data
+          - ./conf:/opt/youtrack/conf
+          - ./logs:/opt/youtrack/logs
+          - ./backups:/opt/youtrack/backups
+        ports:
+        - "8080:8080"
+        networks:
+          - frontend
+networks:
+    frontend:
+        external:
+            name: nginx-proxy       
+
+
